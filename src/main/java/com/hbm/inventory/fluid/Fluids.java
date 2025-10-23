@@ -249,6 +249,7 @@ public class Fluids {
 	public static FluidType TCRUDE;
 	public static FluidType CBENZ; //chlorobenzene
 	public static FluidType HALOLIGHT;
+	public static FluidType COKER_FLUID;
 
 	/* Lagacy names for compatibility purposes */
 	@Deprecated public static FluidType ACID;	//JAOPCA uses this, apparently
@@ -527,6 +528,8 @@ public class Fluids {
 		CBENZ =			new FluidType("CBENZ",		0x91C6BB, 0, 0, 0, EnumSymbol.NONE).addTraits(LIQUID);
 		HALOLIGHT =			new FluidType("HALOLIGHT",		0xB6F9CF, 0, 0, 0, EnumSymbol.NONE).addTraits(LIQUID);
 
+		//Custom stuff
+		COKER_FLUID =			new FluidType("COKER_FLUID",		0x512D11, 0, 0, 0, EnumSymbol.NONE).setTemp(400).addTraits(LIQUID);
 		// ^ ^ ^ ^ ^ ^ ^ ^
 		//ADD NEW FLUIDS HERE
 
@@ -774,6 +777,8 @@ public class Fluids {
 		metaOrder.add(PHEROMONE);
 		metaOrder.add(PHEROMONE_M);
 
+		metaOrder.add(COKER_FLUID);
+
 		//ANY INTERNAL RENAMING MUST BE REFLECTED HERE - DON'T FORGET TO CHANGE: LANG FILES + TYPE'S STRING ID + NAME OF TANK/GUI TEXTURE FILES!
 		// V
 
@@ -941,7 +946,7 @@ public class Fluids {
 		//the spreadsheet must not be questioned
 		//none may enter the orb- i mean the spreadsheet
 
-		int coalHeat = 400_000; // 200TU/t for 2000 ticks
+		int coalHeat = 160_000; // 200TU/t for 2000 ticks, nerfed
 		registerCalculatedFuel(COALOIL, (coalHeat * (1000 /* bucket */ / 100 /* mB per coal */) * flammabilityLow * demandLow * complexityChemplant), 0, null);
 		long coaloil = COALOIL.getTrait(FT_Flammable.class).getHeatEnergy();
 		registerCalculatedFuel(COALGAS, (coaloil / 0.3 * flammabilityNormal * demandMedium * complexityChemplant * complexityFraction), 1.5, FuelGrade.MEDIUM);

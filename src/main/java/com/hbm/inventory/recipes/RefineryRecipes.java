@@ -45,15 +45,15 @@ public class RefineryRecipes {
 
 	private static Map<FluidType, Quintet<FluidStack, FluidStack, FluidStack, FluidStack, ItemStack>> refinery = new HashMap();
 	private static Map<FluidType, Quartet<FluidStack, FluidStack, FluidStack, FluidStack>> vacuum = new HashMap();
-	
+
 	public static HashMap<Object, Object[]> getRefineryRecipe() {
 
 		HashMap<Object, Object[]> recipes = new HashMap<Object, Object[]>();
-		
+
 		for(Entry<FluidType, Quintet<FluidStack, FluidStack, FluidStack, FluidStack, ItemStack>> recipe : refinery.entrySet()) {
-			
+
 			Quintet<FluidStack, FluidStack, FluidStack, FluidStack, ItemStack> fluids = recipe.getValue();
-			
+
 			recipes.put(ItemFluidIcon.make(recipe.getKey(), 1000),
 					new ItemStack[] {
 							ItemFluidIcon.make(fluids.getV().type, fluids.getV().fill * 10),
@@ -62,18 +62,18 @@ public class RefineryRecipes {
 							ItemFluidIcon.make(fluids.getY().type, fluids.getY().fill * 10),
 							ItemStackUtil.carefulCopy(fluids.getZ()) });
 		}
-		
+
 		return recipes;
 	}
-	
+
 	public static HashMap getVacuumRecipe() {
 
 		HashMap<Object, Object[]> recipes = new HashMap<Object, Object[]>();
-		
+
 		for(Entry<FluidType, Quartet<FluidStack, FluidStack, FluidStack, FluidStack>> recipe : vacuum.entrySet()) {
-			
+
 			Quartet<FluidStack, FluidStack, FluidStack, FluidStack> fluids = recipe.getValue();
-			
+
 			recipes.put(ItemFluidIcon.make(recipe.getKey(), 1000, 2),
 					new ItemStack[] {
 							ItemFluidIcon.make(fluids.getW().type, fluids.getW().fill * 10),
@@ -81,18 +81,41 @@ public class RefineryRecipes {
 							ItemFluidIcon.make(fluids.getY().type, fluids.getY().fill * 10),
 							ItemFluidIcon.make(fluids.getZ().type, fluids.getZ().fill * 10) });
 		}
-		
+
 		return recipes;
 	}
-	
+
 	public static void registerRefinery() {
 		refinery.put(Fluids.HOTOIL, new Quintet(
 				new FluidStack(Fluids.HEAVYOIL,		oil_frac_heavy),
 				new FluidStack(Fluids.NAPHTHA,		oil_frac_naph),
 				new FluidStack(Fluids.LIGHTOIL,		oil_frac_light),
 				new FluidStack(Fluids.PETROLEUM,	oil_frac_petro),
-				new ItemStack(ModItems.sulfur)
+				new ItemStack(ModItems.dust_tiny)
 				));
+		refinery.put(Fluids.LIGHTOIL_CRACK, new Quintet(
+			new FluidStack(Fluids.AROMATICS,	37),
+			new FluidStack(Fluids.NAPHTHA,		37),
+			new FluidStack(Fluids.UNSATURATEDS,	20),
+			new FluidStack(Fluids.PETROLEUM,	5),
+			new ItemStack(ModItems.dust_tiny)
+				));
+		refinery.put(Fluids.NAPHTHA_CRACK, new Quintet(
+			new FluidStack(Fluids.AROMATICS,	10),
+			new FluidStack(Fluids.GASOLINE,		10),
+			new FluidStack(Fluids.UNSATURATEDS,	56),
+			new FluidStack(Fluids.PETROLEUM,	24),
+			new ItemStack(ModItems.dust_tiny)
+				));
+		refinery.put(Fluids.COKER_FLUID, new Quintet(
+			new FluidStack(Fluids.OIL_COKER,	72),
+			new FluidStack(Fluids.NAPHTHA_COKER,19),
+			new FluidStack(Fluids.GAS_COKER,	7),
+			new FluidStack(Fluids.SOURGAS,	2),
+			new ItemStack(ModItems.dust_tiny)
+		));
+
+		/*
 		refinery.put(Fluids.HOTCRACKOIL, new Quintet(
 				new FluidStack(Fluids.NAPHTHA_CRACK,	crack_frac_naph),
 				new FluidStack(Fluids.LIGHTOIL_CRACK,	crack_frac_light),
@@ -114,6 +137,7 @@ public class RefineryRecipes {
 				new FluidStack(Fluids.UNSATURATEDS,		crackds_frac_unsat),
 				DictFrame.fromOne(ModItems.oil_tar, EnumTarType.PARAFFIN)
 				));
+		*/
 
 		vacuum.put(Fluids.OIL, new Quartet(
 				new FluidStack(Fluids.HEAVYOIL_VACUUM,	vac_frac_heavy),
@@ -121,6 +145,7 @@ public class RefineryRecipes {
 				new FluidStack(Fluids.LIGHTOIL_VACUUM,	vac_frac_light),
 				new FluidStack(Fluids.SOURGAS,			vac_frac_sour)
 				));
+/*
 		vacuum.put(Fluids.OIL_DS, new Quartet(
 				new FluidStack(Fluids.HEAVYOIL_VACUUM,	vac_frac_heavy),
 				new FluidStack(Fluids.REFORMATE,		vac_frac_reform),
@@ -133,14 +158,15 @@ public class RefineryRecipes {
 				new FluidStack(Fluids.HCL,		vac_frac_light),
 				new FluidStack(Fluids.HGAS,		vac_frac_sour)
 				));
+*/
 	}
-	
 
-	
+
+
 	public static Quintet<FluidStack, FluidStack, FluidStack, FluidStack, ItemStack> getRefinery(FluidType oil) {
 		return refinery.get(oil);
 	}
-	
+
 	public static Quartet<FluidStack, FluidStack, FluidStack, FluidStack> getVacuum(FluidType oil) {
 		return vacuum.get(oil);
 	}

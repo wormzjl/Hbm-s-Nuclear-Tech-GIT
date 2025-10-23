@@ -23,17 +23,17 @@ public class TileEntityHeaterFirebox extends TileEntityFireboxBase implements IC
 	public static double timeMult = 1D;
 	public static int maxHeatEnergy = 100_000;
 	public static ModuleBurnTime burnModule = new ModuleBurnTime()
-			.setLigniteTimeMod(1.25)
-			.setCoalTimeMod(1.25)
-			.setCokeTimeMod(1.25)
-			.setSolidTimeMod(1.5)
+			.setLigniteTimeMod(1)
+			.setCoalTimeMod(1)
+			.setCokeTimeMod(1)
+			.setSolidTimeMod(1)
 			.setRocketTimeMod(1.5)
 			.setBalefireTimeMod(0.5)
 
-			.setLigniteHeatMod(2)
-			.setCoalHeatMod(2)
-			.setCokeHeatMod(2)
-			.setSolidHeatMod(3)
+			.setLigniteHeatMod(1)
+			.setCoalHeatMod(1)
+			.setCokeHeatMod(1)
+			.setSolidHeatMod(1)
 			.setRocketHeatMod(5)
 			.setBalefireHeatMod(15);
 
@@ -72,7 +72,7 @@ public class TileEntityHeaterFirebox extends TileEntityFireboxBase implements IC
 	}
 
 	@SideOnly(Side.CLIENT) private ResourceLocation texture;
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Object provideGUI(int ID, EntityPlayer player, World world, int x, int y, int z) {

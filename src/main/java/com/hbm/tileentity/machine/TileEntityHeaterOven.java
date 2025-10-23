@@ -30,17 +30,17 @@ public class TileEntityHeaterOven extends TileEntityFireboxBase implements IConf
 	public static int maxHeatEnergy = 500_000;
 	public static double heatEff = 0.5D;
 	public static ModuleBurnTime burnModule = new ModuleBurnTime()
-			.setLigniteTimeMod(1.25)
-			.setCoalTimeMod(1.25)
-			.setCokeTimeMod(1.25)
-			.setSolidTimeMod(1.5)
+			.setLigniteTimeMod(1)
+			.setCoalTimeMod(1)
+			.setCokeTimeMod(1)
+			.setSolidTimeMod(1)
 			.setRocketTimeMod(1.5)
 			.setBalefireTimeMod(0.5)
 
-			.setLigniteHeatMod(2)
-			.setCoalHeatMod(2)
-			.setCokeHeatMod(2)
-			.setSolidHeatMod(3)
+			.setLigniteHeatMod(1)
+			.setCoalHeatMod(1)
+			.setCokeHeatMod(1)
+			.setSolidHeatMod(1)
 			.setRocketHeatMod(5)
 			.setBalefireHeatMod(15);
 
@@ -55,17 +55,17 @@ public class TileEntityHeaterOven extends TileEntityFireboxBase implements IConf
 
 	@Override
 	public void updateEntity() {
-		
+
 		if(!worldObj.isRemote) {
 			this.tryPullHeat();
 		}
-		
+
 		super.updateEntity();
 	}
-	
+
 	protected void tryPullHeat() {
 		TileEntity con = worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
-		
+
 		if(con instanceof IHeatSource) {
 			IHeatSource source = (IHeatSource) con;
 			int toPull = Math.max(Math.min(source.getHeatStored(), this.getMaxHeat() - this.heatEnergy), 0);
@@ -100,7 +100,7 @@ public class TileEntityHeaterOven extends TileEntityFireboxBase implements IConf
 	}
 
 	@SideOnly(Side.CLIENT) private ResourceLocation texture;
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Object provideGUI(int ID, EntityPlayer player, World world, int x, int y, int z) {

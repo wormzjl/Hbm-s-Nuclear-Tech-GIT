@@ -63,12 +63,12 @@ public class TileEntityMachineRotaryFurnace extends TileEntityMachinePolluting i
 
 	/**Given this has no heat, the heat mod instead affects the progress per fuel **/
 	public static ModuleBurnTime burnModule = new ModuleBurnTime()
-		.setCokeTimeMod(1.25)
-		.setRocketTimeMod(1.5)
-		.setSolidTimeMod(1.5)
+		.setCokeTimeMod(1)
+		.setRocketTimeMod(1)
+		.setSolidTimeMod(1)
 		.setBalefireTimeMod(1.5)
 
-		.setSolidHeatMod(1.5)
+		.setSolidHeatMod(1)
 		.setRocketHeatMod(3)
 		.setBalefireHeatMod(10);
 
